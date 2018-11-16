@@ -10,6 +10,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
 public class Controlador implements Initializable{
@@ -33,6 +36,10 @@ public class Controlador implements Initializable{
 	
 	 @FXML
 	 private ImageView botonImagen;
+	 
+	 @FXML
+	 private MediaView mediaView;
+
 	
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -43,12 +50,22 @@ public class Controlador implements Initializable{
 	     translateTransition.setByX(-400);
 	     translateTransition.play();
 		
-		backgroundAnimation();
+		//backgroundAnimation();
 		
+	     //VIDEO
+         	Media media1= new Media(getClass().getResource("../images/video.mp4").toExternalForm());
+	        MediaPlayer player=new MediaPlayer(media1);
+	        mediaView.setMediaPlayer(player);
+	        player.setVolume(0.5);
+	        player.play();
+         //////////////////////
+         
+	     
 		 botonImagen.setOnMouseClicked(event -> {
 
 	            panelOpaco.setVisible(true);
-
+	          
+	            
 	            FadeTransition fadeTransition1=new FadeTransition(Duration.seconds(0.5), panelOpaco);
 	            fadeTransition1.setFromValue(0);
 	            fadeTransition1.setToValue(0.6);
@@ -78,6 +95,9 @@ public class Controlador implements Initializable{
 		
 
 	}
+	
+	 
+	   
 	
 	private void backgroundAnimation() {
 
